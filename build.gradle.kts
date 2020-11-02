@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-data-rest")
 	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.springframework.boot:spring-boot-starter-mustache")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -25,11 +26,28 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.h2database:h2")
+//	runtimeOnly("com.h2database:h2")
+	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 }
+
+tasks.jar {
+	archiveFileName.set("spring-angular-0.0.1-SNAPSHOT")
+	from("frontend/dist")
+	into("public")
+}
+
+//jar {
+//	baseName = 'spring-angular'
+//	version = '0.0.1-SNAPSHOT'
+//	from('frontend/dist') {
+//		into 'public'
+//	}
+//}
+
+//processResources.dependsOn('frontend:build')
 
 tasks.withType<Test> {
 	useJUnitPlatform()
@@ -40,4 +58,5 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
 	}
+	dependsOn("frontend:build")
 }
