@@ -1,5 +1,4 @@
 package com.julian.kaohon
-
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType

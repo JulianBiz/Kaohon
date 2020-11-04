@@ -1,0 +1,16 @@
+<h4>{{ title }}</h4>
+<div class="content" role="main">
+  <div *ngIf="userList.length != 0">
+    <h2 class="text-center">2020年10月の新卒グループ</h2>
+    <div class="row">
+      <div *ngFor="let user of userList" class="col-md-4 julian-spacer">
+        <h3 class="card-title">{{ user.name }}</h3>
+        <p class="card-text">({{ user.gender }}) {{ user.division }}<br>From {{ user.home }}</p>
+        <br>
+        <div class="text-center">
+          <button class="btn btn-danger">Add as Friend</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

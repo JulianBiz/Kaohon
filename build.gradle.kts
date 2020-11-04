@@ -39,16 +39,6 @@ tasks.jar {
 	into("public")
 }
 
-//jar {
-//	baseName = 'spring-angular'
-//	version = '0.0.1-SNAPSHOT'
-//	from('frontend/dist') {
-//		into 'public'
-//	}
-//}
-
-//processResources.dependsOn('frontend:build')
-
 tasks.withType<Test> {
 	useJUnitPlatform()
 }

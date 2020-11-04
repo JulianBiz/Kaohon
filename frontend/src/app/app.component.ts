@@ -8,5 +8,4 @@ import { users } from './users';
 })
 export class AppComponent {
   title = 'frontend';
-  userList = users
 }
