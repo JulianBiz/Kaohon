@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+@import url("//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css");
+
+/* GENERAL */
+.f-thin {
+  font-family: 'Roboto', serif;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+.f-light {
+  font-family: 'Roboto', serif;
+  font-weight: 100;
+  letter-spacing: -0.75px;
+}
+.spacer {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.spacer-l {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+.spacer-side {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.br-kaohon-dark {
+  background-color: #880000;
+}
+.br-kaohon-dark-2 {
+  background-color: #AA0000;
+}
+.br-kaohon-gradient {
+  background: linear-gradient(0deg, #CC0000, #880000);
+}
+.txt-kaohon-dark {
+  color: #880000;
+}
+.txt-kaohon-dark-2 {
+  color: #AA0000;
+}
+.txt-default {
+  color: white;
+}
+.jButton {
+  color: white;
+  background-color: #880000;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 1s ease;
+}
+.jButton:hover {
+  color: white;
+  background-color: #CC0000;
+  transition: 1s ease;
+}
+
+/* NAVIGATION RELATED */
+.dropdown-item {
+  transition: 1s ease;
+}
+.dropdown-item:hover {
+  background-color: #880000;
+  transition: 1s ease;
+}
+ul > li > a.nav-link {
+  color: #CCCCCC;
+  transition: 0.25s ease;
+}
+ul > li > a.nav-link:hover {
+  color: white;
+  transition: 0.25s ease;
+}
+
+/* NEWS FEED */
+.singlePost {
+  text-decoration: none;
+  color: black;
+  transition: 1s ease;
+  font-family: 'Roboto', sans-serif;
+}
+.singlePost:hover {
+  color: #880000;
+  transition: 1s ease;
+}
+.miniProfile {
+  height: 50px;
+  width: auto;
+  border-radius: 100%;
+  box-shadow: 2px 3px;
+  margin-bottom: 10px;
+}
+.card {
+  background: linear-gradient(180deg, #CC0000, #880000);
+  color: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 15px;
+  width: 100%;
+}
+.card-header {
+  border-color: white;
+}
+
+/* VIEW MEMBER LIST */
+.m-margin {
+  /*border: 5px solid transparent;*/
+  border-radius: 20px;
+}
+.userBox {
+  transition: 0.75s ease;
+  transform: scale(0.95);
+}
+.userBox:hover {
+  transition: 0.75s ease;
+  transform: scale(0.98);
+}
+.profPic {
+  border-radius: 15px;
+  width: 100%;
+  border: 2px solid #880000;
+}

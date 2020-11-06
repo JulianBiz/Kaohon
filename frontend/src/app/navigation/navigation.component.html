@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Kaohon</a>
+<nav class="navbar navbar-expand-lg navbar-dark br-kaohon-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,37 +6,39 @@
   <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/">Feed</a>
+        <a class="nav-link f-thin" href="#" routerLink="/">Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/users">Members</a>
+        <a class="nav-link f-thin" href="#" routerLink="/users">Members</a>
       </li>
     </ul>
   </div>
   <div class="mx-auto order-0">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+    <a class="navbar-brand" href="#">KAOHON</a>
+<!--      <form class="form-inline my-2 my-lg-0">-->
+<!--        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--      </form>-->
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/login" *ngIf="!loggedIn; else register">Log In</a>
-        <ng-template #register>
-          <a class="nav-link" href="#" routerLink="/login">Log Out</a>
-        </ng-template>
-      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="drop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          You
+        <a class="nav-link dropdown-toggle f-thin" href="#" id="drop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          All You
         </a>
-        <div class="dropdown-menu" aria-labelledby="drop">
-          <a class="dropdown-item" href="#">Your Profile</a>
-          <a class="dropdown-item" href="#">Your Friends</a>
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Logout</a>
+        <div class="dropdown-menu br-kaohon-dark-2" aria-labelledby="drop">
+          <a class="dropdown-item txt-default f-thin" href="#">Your Profile</a>
+          <a class="dropdown-item txt-default f-thin" href="#">Your Friends</a>
+          <a class="dropdown-item txt-default f-thin" href="#">Settings</a>
+          <a class="dropdown-item txt-default f-thin" href="#" routerLink="/report">Report a Bug</a>
+          <a class="dropdown-item txt-default f-thin" href="#">Logout</a>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link f-thin" href="#" routerLink="/login" *ngIf="!loggedIn; else register">Log In</a>
+        <ng-template #register>
+          <a class="nav-link f-thin" href="#" routerLink="/login">Log Out</a>
+        </ng-template>
       </li>
     </ul>
   </div>

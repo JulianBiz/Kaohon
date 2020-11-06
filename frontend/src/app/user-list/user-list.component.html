@@ -1,14 +1,20 @@
-<h4>{{ title }}</h4>
-<div class="content" role="main">
+<div [@enterAnim] class="content" role="main">
+  <h1 class="text-center spacer-l f-thin">{{ title }}</h1>
   <div *ngIf="userList.length != 0">
-    <h2 class="text-center">2020年10月の新卒グループ</h2>
+    <h2 class="text-center f-thin">2020年10月の新卒グループ</h2>
     <div class="row">
-      <div *ngFor="let user of userList" class="col-md-4 julian-spacer">
-        <h3 class="card-title">{{ user.name }}</h3>
-        <p class="card-text">({{ user.gender }}) {{ user.division }}<br>From {{ user.home }}</p>
-        <br>
-        <div class="text-center">
-          <button class="btn btn-danger">Add as Friend</button>
+      <div *ngFor="let user of userList"
+           class="col-md-4 spacer br-kaohon-gradient shadow
+                  txt-default p-3 m-margin userBox">
+        <div class="col-md-12">
+          <img src="{{user.profPicLink}}" class="profPic">
+          <h3 class="card-title spacer text-center f-light">{{ user.name }}</h3>
+          <p class="card-text text-center f-thin">({{ user.gender }}) {{ user.division }}<br>From {{ user.home }}</p>
+          <br>
+          <div class="text-center">
+            <button class="btn btn-light spacer-side f-thin"><i class="fas fa-plus"></i>View Profile</button>
+            <button class="btn btn-dark spacer-side f-thin"><i class="fas fa-plus"></i>Add as Friend</button>
+          </div>
         </div>
       </div>
     </div>

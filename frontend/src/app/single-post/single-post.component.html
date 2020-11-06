@@ -1,0 +1,33 @@
+<div *ngIf="fullPost; else clickable">
+  <div class="card spacer" [@enterAnim]>
+    <div class="card-header f-light">
+      <h2><img src="{{ findUser(post.posterId).profPicLink }}" class="miniProfile">
+        {{ post.postTitle }}
+      </h2>
+    </div>
+    <div class="card-body f-thin">
+      <p>{{ findUser(post.posterId).name }} | {{ post.postSubtitle }}</p>
+      <p>{{ post.postContent }}</p>
+    </div>
+  </div>
+  <div class="userBox text-center spacer">
+    <a href="" class="jButton f-thin" (click)="loadPost(-1)" [@enterAnim]>Return to Feed</a>
+  </div>
+</div>
+<ng-template #clickable>
+  <div class="userBox">
+    <a href="#" class="singlePost" [@enterAnim] (click)="setPost(post)">
+      <div class="card spacer">
+        <div class="card-header">
+          <h2>
+            <img src="{{ findUser(post.posterId).profPicLink }}" class="miniProfile">
+            {{ post.postTitle }}
+          </h2>
+        </div>
+<!--        <div class="card-body">-->
+<!--          <p>{{ findUser(post.posterId).name }} | {{ post.postSubtitle }}</p>-->
+<!--        </div>-->
+      </div>
+    </a>
+  </div>
+</ng-template>

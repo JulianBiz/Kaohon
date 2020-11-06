@@ -1,2 +1,24 @@
-<p>Home</p>
-<app-navigation></app-navigation>
+<script>
+  $(document).onload(function(){
+      $("card").fadeIn("slow");
+  });
+</script>
+
+<div class="container-fluid">
+  <h1 class="text-center spacer-l f-thin">News Feed</h1>
+
+  <div *ngIf="getActivePost() == null; else fullPost">
+    <div *ngIf="allPosts.length > 0; else noFeed">
+      <div *ngFor="let post of allPosts" [@enterAnim]>
+        <post [post]="post" (click)="loadPost(post.postId)"></post>
+      </div>
+    </div>
+    <ng-template #noFeed>
+      <p>There are no posts! Maybe you should look for some new friends?</p>
+      <a href="#" routerLink="/users">Click to View Members!</a>
+    </ng-template>
+  </div>
+  <ng-template #fullPost>
+    <post [post]="getActivePost()" [fullPost]="true"></post>
+  </ng-template>
+</div>

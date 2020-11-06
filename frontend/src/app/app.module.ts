@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {Routes, Router, RouterModule} from '@angular/router';
@@ -10,6 +10,11 @@ import { HomeComponent } from './home/home.component'
 import { FormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from "@angular/common/http";
+import { ReportComponent } from './report/report.component';
+import {CommonModule} from "@angular/common";
+import { ViewPostComponent } from './view-post/view-post.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SinglePostComponent } from './single-post/single-post.component';
 
 const appRoutes :Routes = [
   {
@@ -21,12 +26,20 @@ const appRoutes :Routes = [
     component: UserListComponent
   },
   {
-    path:'',
-    component: HomeComponent,
+    path:'login',
+    component: LoginComponent
   },
   {
-    path:'login',
-    component: LoginComponent,
+    path:'report',
+    component: ReportComponent
+  },
+  {
+    path:'view',
+    component: ViewPostComponent
+  },
+  {
+    path:'',
+    component: HomeComponent
   },
   {
     path:'**',
@@ -40,14 +53,21 @@ const appRoutes :Routes = [
     NavigationComponent,
     UserListComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ReportComponent,
+    ViewPostComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     // AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    CommonModule,
+    // HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [
@@ -55,7 +75,9 @@ const appRoutes :Routes = [
     HomeComponent,
     NavigationComponent,
     UserListComponent,
-    LoginComponent
+    LoginComponent,
+    ReportComponent,
+    ViewPostComponent
   ]
 })
 export class AppModule { }
