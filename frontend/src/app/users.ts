@@ -5,7 +5,8 @@ export const users = [
     home: 'USA',
     gender: 'M',
     division: 'ビズリーチ事業部',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01ARDU35QE-b88fa834fe20-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01ARDU35QE-b88fa834fe20-512',
+    friends: [1,2,3,4,5]
   },
   {
     id: 1,
@@ -13,7 +14,8 @@ export const users = [
     home: 'China',
     gender: 'M',
     division: 'AI室',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AP2AU8BG-475bd2cd741f-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AP2AU8BG-475bd2cd741f-512',
+    friends: [0,2,4]
   },
   {
     id: 2,
@@ -21,7 +23,8 @@ export const users = [
     home: 'Vietnam',
     gender: 'F',
     division: '?',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AV39L6H3-1284d8a28649-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AV39L6H3-1284d8a28649-512',
+    friends: [0,4]
   },
   {
     id: 3,
@@ -29,7 +32,8 @@ export const users = [
     home: 'Poland',
     gender: 'M',
     division: '?',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AW0H3JBD-afa031963d9f-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AW0H3JBD-afa031963d9f-512',
+    friends: [0,5]
   },
   {
     id: 4,
@@ -37,7 +41,8 @@ export const users = [
     home: 'China',
     gender: 'F',
     division: '?',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01BKK6R53J-a3b766164db9-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01BKK6R53J-a3b766164db9-512',
+    friends: [0,1,2]
   },
   {
     id: 5,
@@ -45,7 +50,8 @@ export const users = [
     home: 'Japan',
     gender: 'F',
     division: 'HRMOS',
-    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AP2ATAVC-2c95cea65c49-512'
+    profPicLink: 'https://ca.slack-edge.com/EPNK7BPTK-W01AP2ATAVC-2c95cea65c49-512',
+    friends: [0,3]
   }
 ];
 

@@ -1,6 +1,6 @@
-<h3 class="text-center">Report a Bug</h3>
-<div class="container">
-  <form name="form" #f="ngForm" (submit)="sendFeedback()" novalidate>
+<h3 class="text-center spacer-l f-thin">Report a Bug</h3>
+<div class="container f-thin">
+  <form name="form" #f="ngForm" (submit)="sendFeedback()" novalidate class="w-50 d-block ml-auto mr-auto">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" placeholder="Julian Rice"
@@ -9,12 +9,15 @@
     <div class="form-group">
       <label for="email">Email</label>
       <input type="text" class="form-control" id="email" placeholder="julian.rice@bizreach.co.jp"
-             [(ngModel)]="model.email" )]>
+             [(ngModel)]="model.email">
     </div>
     <div class="form-group">
       <label for="problem">What's your problem?</label>
       <input type="text" class="form-control" id="problem" placeholder="I want to go to Japan."
              [(ngModel)]="model.message">
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-danger userBox">Submit</button>
     </div>
   </form>
 </div>

@@ -5,20 +5,36 @@
 </script>
 
 <div class="container-fluid">
-  <h1 class="text-center spacer-l f-thin">News Feed</h1>
-
-  <div *ngIf="getActivePost() == null; else fullPost">
-    <div *ngIf="allPosts.length > 0; else noFeed">
-      <div *ngFor="let post of allPosts" [@enterAnim]>
-        <post [post]="post" (click)="loadPost(post.postId)"></post>
+  <h1 class="text-center spacer-l f-thin">Welcome back, {{ currentUser.name }}</h1>
+  <div class="row">
+    <!-- ToDo: Remove sidebar if mobile-->
+    <!-- ToDo: Create as ShortProfile Component, prepare FullProfileComponent as well? -->
+    <div class="col-2">
+      <img src="{{currentUser.profPicLink}}" class="rounded-circle w-100 text-left spacer-l">
+      <h3 class="text-center f-thin">{{ currentUser.name }}</h3>
+      <p class="text-center">{{ currentUser.division }}</p>
+      <p class="text-center">Friends: {{ currentUser.friends.length }}</p>
+      <div class="text-center">
+        <button class="btn btn-danger userBox">View Messages</button>
       </div>
+
     </div>
-    <ng-template #noFeed>
-      <p>There are no posts! Maybe you should look for some new friends?</p>
-      <a href="#" routerLink="/users">Click to View Members!</a>
-    </ng-template>
+    <div class="col-10">
+      <h1 class="text-center spacer-l f-thin">News Feed</h1>
+      <div *ngIf="getActivePost() == null; else fullPost">
+        <div *ngIf="allPosts.length > 0; else noFeed">
+          <div *ngFor="let post of allPosts" [@enterAnim]>
+            <post [post]="post" (click)="loadPost(post.postId)"></post>
+          </div>
+        </div>
+        <ng-template #noFeed>
+          <p>There are no posts! Maybe you should look for some new friends?</p>
+          <a href="#" routerLink="/users">Click to View Members!</a>
+        </ng-template>
+      </div>
+      <ng-template #fullPost>
+        <post [post]="getActivePost()" [fullPost]="true"></post>
+      </ng-template>
+    </div>
   </div>
-  <ng-template #fullPost>
-    <post [post]="getActivePost()" [fullPost]="true"></post>
-  </ng-template>
 </div>

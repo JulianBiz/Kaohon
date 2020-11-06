@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   allUsers = users
   activeId = -1
 
+  //Temp: Current User (Julian)
+  currentUser = null
+
   @Output() selected = new EventEmitter<number>();
   loadPost(id : number) {
     this.selected.emit({
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     this.activeId = -1;
+    this.currentUser = users[0]
   }
 
   ngOnInit(): void {
