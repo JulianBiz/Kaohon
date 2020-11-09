@@ -64,7 +64,7 @@ const appRoutes :Routes = [
     // AppRoutingModule,
     FormsModule,
     CommonModule,
-    // HttpClientModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
     FontAwesomeModule

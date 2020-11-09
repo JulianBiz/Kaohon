@@ -1,4 +1,6 @@
 package com.julian.kaohon
+import org.hibernate.mapping.Set
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -10,8 +12,13 @@ class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private var id: Int = 0
 
-    private var email: String = "-"
-    private var name: String = "-"
+    //ToDo: Eventually, make individual classes that hold specific information for organizational purposes
+    private var email: String = ""
+    private var name: String = ""
+//    private var hometown : String = ""
+//    private var division : String = ""
+    //private lateinit var dateOfBirth : Date
+//    private lateinit var friendList: Set
 
     fun setEmail(em : String) { email = em }
     fun setName(nm : String) { name = nm }
@@ -19,6 +26,10 @@ class User {
     fun getEmail(): String { return email }
     fun getName() : String { return name }
     fun getId() : Int { return id }
+
+//    fun getFriendList() : Set {
+//        return friendList;
+//    }
 
     @Override
     override fun toString(): String {

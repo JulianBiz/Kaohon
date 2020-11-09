@@ -1,5 +1,15 @@
 <div [@enterAnim] class="content" role="main">
   <h1 class="text-center spacer-l f-thin">{{ title }}</h1>
+
+  <p class="text-center">Backend Test!!</p>
+  <div class="row">
+    <div *ngFor="let bUser of userGroup" class="col-md-4 spacer br-kaohon-gradient shadow
+                  txt-default p-3 m-margin userBox">
+      <h3 class="text-center">{{ bUser.name }}</h3>
+      <p class="text-center">{{ bUser.email }}</p>
+    </div>
+  </div>
+
   <div *ngIf="userList.length != 0">
     <h2 class="text-center f-thin">2020年10月の新卒グループ</h2>
     <div class="row">
