@@ -3,6 +3,7 @@ import { users } from '../users';
 import {fadeIn} from "../animations";
 import {HttpClient} from "@angular/common/http";
 import {User} from "./model/user";
+import {ApiService} from "../shared/api.service";
 
 @Component({
   selector: 'app-user-list',
@@ -15,11 +16,11 @@ import {User} from "./model/user";
 export class UserListComponent implements OnInit {
   userList = users
   title = 'View Members';
-  http : HttpClient = null
+  apiService : ApiService = null
   userGroup: User[] = [];
 
-  constructor(http: HttpClient) {
-    this.http = http
+  constructor(apiService: ApiService) {
+    this.apiService = apiService
   }
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class UserListComponent implements OnInit {
 
   getAllUsers() {
     let url = "http://localhost:8080/demo/all"
-    this.http.get<User[]>(url).subscribe(
+    this.apiService.getAllUsers().subscribe(
       res => {
         this.userGroup = res
       },
