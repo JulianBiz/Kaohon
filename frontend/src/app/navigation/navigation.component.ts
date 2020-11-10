@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   loggedIn = true
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this.loggedIn = false
+  }
+
+  logIn() {
+    this.loggedIn = true
   }
 
 }

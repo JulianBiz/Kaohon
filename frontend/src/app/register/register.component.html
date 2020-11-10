@@ -1,0 +1,59 @@
+<h3 class="text-center spacer-l f-thin">Register</h3>
+<div class="container f-thin">
+  <form class="w-50 d-block ml-auto mr-auto" novalidate
+        name="form" #f="ngForm" (submit)="createUser()">
+
+    <div class="form-row spacer">
+      <div class="col">
+        <label for="email">Email address</label>
+
+        <input type="email"
+               class="form-control"
+               id="email"
+               aria-describedby="emailHelp"
+               placeholder="Enter email"
+               [(ngModel)]="model.email">
+
+        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+      </div>
+      <div class="col">
+        <label for="pw">Password</label>
+
+        <input type="password"
+               class="form-control"
+               id="pw"
+               placeholder="Password"
+               [(ngModel)]="model.password">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <label for="first">First Name</label>
+
+        <input type="text"
+               class="form-control"
+               id="first"
+               aria-describedby="firstHelp"
+               placeholder="Julian"
+               [(ngModel)]="model.first">
+
+        <!--<small id="firstHelp" class="form-text text-muted">--</small>-->
+      </div>
+      <div class="col">
+        <label for="last">Last Name</label>
+
+        <input type="text"
+               class="form-control"
+               id="last"
+               aria-describedby="lastHelp"
+               placeholder="Rice"
+               [(ngModel)]="model.last">
+
+        <!--<small id="lastHelp" class="form-text text-muted">--</small>-->
+      </div>
+    </div>
+    <div class="text-center spacer">
+      <button type="submit" class="btn btn-danger userBox">Join Kaohon</button>
+    </div>
+  </form>
+</div>

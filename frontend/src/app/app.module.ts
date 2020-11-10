@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {Routes, Router, RouterModule} from '@angular/router';
+import { Routes, Router, RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { HomeComponent } from './home/home.component'
@@ -11,10 +11,11 @@ import { FormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ReportComponent } from './report/report.component';
-import {CommonModule} from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { ViewPostComponent } from './view-post/view-post.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SinglePostComponent } from './single-post/single-post.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes :Routes = [
   {
@@ -28,6 +29,10 @@ const appRoutes :Routes = [
   {
     path:'login',
     component: LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
   },
   {
     path:'report',
@@ -56,7 +61,8 @@ const appRoutes :Routes = [
     LoginComponent,
     ReportComponent,
     ViewPostComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +83,8 @@ const appRoutes :Routes = [
     UserListComponent,
     LoginComponent,
     ReportComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    RegisterComponent
   ]
 })
 export class AppModule { }

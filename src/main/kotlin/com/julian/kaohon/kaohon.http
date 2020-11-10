@@ -1,1 +1,23 @@
+###
+
 GET {{host-url}}/all
+
+###
+
+POST {{host-url}}//add
+Content-Type: application/json
+
+{
+  "id": -1,
+  "first": "Julian",
+  "last": "Rice",
+  "email": "julian.rice@bizreach.co.jp",
+  "password": "123",
+  "name": "",
+  "hometown": "",
+  "division": "",
+  "phone": "",
+  "friendList": []
+}
+
+###
