@@ -4,19 +4,19 @@ GET {{host-url}}/all
 
 ###
 
-POST {{host-url}}//add
+POST {{host-url}}//newAdd
 Content-Type: application/json
 
 {
   "id": -1,
   "first": "Julian",
   "last": "Rice",
+  "password": "123321",
   "email": "julian.rice@bizreach.co.jp",
-  "password": "123",
+  "phone": "",
   "name": "",
   "hometown": "",
   "division": "",
-  "phone": "",
   "friendList": []
 }
 

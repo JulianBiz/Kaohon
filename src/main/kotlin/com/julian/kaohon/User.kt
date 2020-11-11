@@ -9,14 +9,14 @@ class User {
     private var id: Int = 0
 
     //ToDo: Eventually, make individual classes that hold specific information for organizational purposes
-    private var email: String = ""
-    private var name: String = ""
     private var first: String = ""
     private var last: String = ""
+    private var name: String = ""
+    private var password : String = ""
+    private var email: String = ""
+    private var phone : String = ""
     private var hometown : String = ""
     private var division : String = ""
-    private var phone : String = ""
-    private var password : String = ""
 
     @ElementCollection
     private lateinit var friendList: Set<Int>

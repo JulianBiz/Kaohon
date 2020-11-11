@@ -1,12 +1,12 @@
 export interface User {
-  id:number;
-  name:string;
-  first:string;
-  last:string;
-  email:string;
-  phone:string;
-  hometown:string;
-  division:string;
-  password:string;
-  friendList:Set<number>;
+  id: number;
+  first: string;
+  last: string;
+  name: string;
+  password: string;
+  email: string;
+  phone: string;
+  hometown: string;
+  division: string;
+  friendList: Set<number>;
 }

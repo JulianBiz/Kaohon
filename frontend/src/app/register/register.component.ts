@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "../user-list/model/user";
+import { User } from '../user-list/model/user';
+import {ApiService} from '../shared/api.service';
 
 @Component({
   selector: 'app-register',
@@ -8,26 +9,49 @@ import { User } from "../user-list/model/user";
 })
 export class RegisterComponent implements OnInit {
 
+  apiService: ApiService;
   model: User = {
-    id:-1,
-    first:"",
-    last:"",
-    name:"",
-    password:"",
-    email:"",
-    phone:"",
-    hometown:"",
-    division:"",
-    friendList:null
-  }
+    id: null,
+    first: 'First',
+    last: 'Last',
+    name: 'Full',
+    password: '',
+    email: '',
+    phone: '',
+    hometown: '',
+    division: '',
+    friendList: null
+  };
 
-  constructor() { }
+  users: User[] = [];
+
+  constructor(apiService: ApiService) {
+    this.apiService = apiService;
+  }
 
   ngOnInit(): void {
   }
 
-  createUser() : void {
-    alert(this.model.first+"-"+this.model.last+"-"+this.model.email);
+  createUser(): void {
+    let newUser:User = {
+      id: null,
+      first: this.model.first,
+      last: this.model.last,
+      name: 'New User',
+      password: this.model.password,
+      email: this.model.email,
+      phone: '',
+      hometown: '',
+      division: '',
+      friendList: null
+    };
+    this.apiService.createUser(newUser).subscribe(
+      res => {
+        newUser.id = res.id;
+        this.users.push(newUser);
+      }, err => {
+        alert('Error occurred with User Creation! API Service-> createUser()');
+      }
+    );
   }
-
 }

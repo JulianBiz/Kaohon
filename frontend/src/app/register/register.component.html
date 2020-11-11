@@ -12,6 +12,7 @@
                id="email"
                aria-describedby="emailHelp"
                placeholder="Enter email"
+               name="email"
                [(ngModel)]="model.email">
 
         <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
@@ -23,6 +24,7 @@
                class="form-control"
                id="pw"
                placeholder="Password"
+               name="password"
                [(ngModel)]="model.password">
       </div>
     </div>
@@ -35,6 +37,7 @@
                id="first"
                aria-describedby="firstHelp"
                placeholder="Julian"
+               name="first"
                [(ngModel)]="model.first">
 
         <!--<small id="firstHelp" class="form-text text-muted">--</small>-->
@@ -47,6 +50,7 @@
                id="last"
                aria-describedby="lastHelp"
                placeholder="Rice"
+               name="last"
                [(ngModel)]="model.last">
 
         <!--<small id="lastHelp" class="form-text text-muted">--</small>-->

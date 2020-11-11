@@ -18,19 +18,25 @@ class MainController {
     private lateinit var userRepository : UserRepository
 
     @PostMapping("/newAdd")
-    fun createUser(@RequestBody user : User, bindingResult : BindingResult) {
+    @ResponseBody fun createUser(@RequestBody user : User, bindingResult : BindingResult) : String {
         if (bindingResult.hasErrors()) {
             throw ValidationException("Error! Could not create user")
         }
-
+        var temp = User()
+        temp.setFirst(user.getFirst())
+        temp.setLast(user.getLast())
+        temp.setPassword(user.getPassword())
+        temp.setEmail(user.getEmail())
+        userRepository.save(temp)
+        return "Saved!\nUser: " + temp.getFirst();
     }
 
     @PostMapping("/add")
     @ResponseBody fun addNewUser(
-            @RequestParam first : String,
-            @RequestParam last : String,
-            @RequestParam email : String,
-            @RequestParam password : String,
+            @RequestParam(required = false) first : String,
+            @RequestParam(required = false) last : String,
+            @RequestParam(required = false) email : String,
+            @RequestParam(required = false) password : String,
             @RequestParam(required = false) name : String,
             @RequestParam(required = false) division : String,
             @RequestParam(required = false) hometown : String) : String {
@@ -52,6 +58,8 @@ class MainController {
     @ResponseBody fun getAllUsers() : Iterable<User> {
         return userRepository.findAll()
     }
+
+//    @RequestMapping("/")
 
     @DeleteMapping("/all/{id}")
     fun deleteUser(@PathVariable id : Int) {
