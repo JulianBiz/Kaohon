@@ -1,18 +1,27 @@
 package com.julian.kaohon
 
-import org.jooq.Log
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
-import java.io.Console
-import java.util.logging.Logger
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import java.security.Principal
+import javax.servlet.FilterChain
+import javax.servlet.ServletRequest
+import javax.servlet.ServletResponse
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 import javax.xml.bind.ValidationException
-import kotlin.math.log
+
 
 @Controller
 @RequestMapping("/demo")
-@CrossOrigin
+@CrossOrigin(origins = ["http://localhost:8080", "http://localhost:4200"], allowedHeaders = ["*"])
 class MainController {
     @Autowired
     private lateinit var userRepository : UserRepository
@@ -29,6 +38,42 @@ class MainController {
         temp.setEmail(user.getEmail())
         userRepository.save(temp)
         return "Saved!\nUser: " + temp.getFirst();
+    }
+
+    @CrossOrigin(origins = ["http://localhost:8080", "http://localhost:4200"], allowedHeaders = ["*"])
+    @RequestMapping("/user")
+    fun user(user: Principal?) : Principal? {
+        return user;
+    }
+
+    @Configuration
+    protected class SecurityConfiguration : WebSecurityConfigurerAdapter() {
+        @Override
+        protected override fun configure(http: HttpSecurity) {
+            try {
+                http
+                .csrf()
+                .disable()
+                .cors()
+                .and().formLogin().usernameParameter("julian").passwordParameter("kuribo").and()
+                .authorizeRequests()
+                .antMatchers("/index.html", "/", "/home", "/login", "/demo/user", HttpMethod.OPTIONS.toString())
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+
+//                csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                        .and().formLogin().loginPage("/")
+//                        .usernameParameter("julian")
+//                        .passwordParameter("kuribo")
+//                        .defaultSuccessUrl("/demo/user")
+//                        .failureUrl("/demo/user");
+
+
+            } catch (e: Exception) {
+
+            }
+        }
     }
 
     @PostMapping("/add")

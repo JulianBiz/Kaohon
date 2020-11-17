@@ -1,6 +1,9 @@
 <h3 class="text-center spacer-l f-thin">Login</h3>
 <div class="container f-thin">
-  <form class="w-50 d-block ml-auto mr-auto">
+  <div class="alert alert-danger" [hidden]="!error">
+    There was a problem logging in. Please try again!
+  </div>
+  <form class="w-50 d-block ml-auto mr-auto" (submit)="login()">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

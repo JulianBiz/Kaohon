@@ -1,53 +1,72 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Inject, Injectable, NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { HomeComponent } from './home/home.component'
-import { FormsModule } from "@angular/forms";
+import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { ReportComponent } from './report/report.component';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { RegisterComponent } from './register/register.component';
+import {Observable} from 'rxjs';
+import {ApiService} from './shared/api.service';
 
-const appRoutes :Routes = [
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
+
+const appRoutes: Routes = [
   {
-    path:'nav',
+    path: 'nav',
     component: NavigationComponent
   },
   {
-    path:'users',
+    path: 'users',
     component: UserListComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'register',
+    path: 'register',
     component: RegisterComponent
   },
   {
-    path:'report',
+    path: 'report',
     component: ReportComponent
   },
   {
-    path:'view',
+    path: 'view',
     component: ViewPostComponent
   },
   {
-    path:'',
+    path: '',
     component: HomeComponent
   },
   {
-    path:'**',
+    path: '**',
     component: HomeComponent
   }
 ];
@@ -75,16 +94,18 @@ const appRoutes :Routes = [
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: XhrInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [
-    AppComponent,
-    HomeComponent,
-    NavigationComponent,
-    UserListComponent,
-    LoginComponent,
-    ReportComponent,
-    ViewPostComponent,
-    RegisterComponent
+    AppComponent
   ]
 })
 export class AppModule { }
+
+
