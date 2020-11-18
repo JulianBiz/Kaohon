@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
+  login(): boolean {
+    // alert(this.credentials.username + " : " + this.credentials.password);
     this.app.authenticate(this.credentials, () => {
       this.router.navigateByUrl('/');
       this.error = false;

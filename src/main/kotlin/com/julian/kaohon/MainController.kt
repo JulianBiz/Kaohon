@@ -3,6 +3,7 @@ package com.julian.kaohon
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
@@ -42,39 +43,10 @@ class MainController {
 
     @CrossOrigin(origins = ["http://localhost:8080", "http://localhost:4200"], allowedHeaders = ["*"])
     @RequestMapping("/user")
-    fun user(user: Principal?) : Principal? {
+    fun user(user: Principal) : Principal {
         return user;
     }
 
-    @Configuration
-    protected class SecurityConfiguration : WebSecurityConfigurerAdapter() {
-        @Override
-        protected override fun configure(http: HttpSecurity) {
-            try {
-                http
-                .csrf()
-                .disable()
-                .cors()
-                .and().formLogin().usernameParameter("julian").passwordParameter("kuribo").and()
-                .authorizeRequests()
-                .antMatchers("/index.html", "/", "/home", "/login", "/demo/user", HttpMethod.OPTIONS.toString())
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-
-//                csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                        .and().formLogin().loginPage("/")
-//                        .usernameParameter("julian")
-//                        .passwordParameter("kuribo")
-//                        .defaultSuccessUrl("/demo/user")
-//                        .failureUrl("/demo/user");
-
-
-            } catch (e: Exception) {
-
-            }
-        }
-    }
 
     @PostMapping("/add")
     @ResponseBody fun addNewUser(
