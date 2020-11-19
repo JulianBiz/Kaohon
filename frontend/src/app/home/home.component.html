@@ -4,7 +4,7 @@
   });
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="this.app.isLoggedIn() else blankHome">
   <h1 class="text-center spacer-l f-thin">Welcome back, {{ currentUser.name }}</h1>
   <div class="row">
     <!-- ToDo: Remove sidebar if mobile-->
@@ -22,6 +22,7 @@
     <div class="col-10">
       <h1 class="text-center spacer-l f-thin">News Feed</h1>
       <div *ngIf="getActivePost() == null; else fullPost">
+        <app-make-post></app-make-post>
         <div *ngIf="allPosts.length > 0; else noFeed">
           <div *ngFor="let post of allPosts" [@enterAnim]>
             <post [post]="post" (click)="loadPost(post.postId)"></post>
@@ -38,3 +39,10 @@
     </div>
   </div>
 </div>
+<ng-template #blankHome>
+  <div class="container-fluid spacer-l text-center">
+    <h3 class="f-light">Welcome to Kaohon</h3>
+    <p class="f-thin">We're still working hard on the website. If you have an account, feel free to log in by clicking the button below.</p>
+    <button class="btn btn-danger" (click)="this.router.navigateByUrl('/login')">Log In</button>
+  </div>
+</ng-template>

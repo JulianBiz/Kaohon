@@ -4,7 +4,7 @@
   </button>
 
   <div class="collapse navbar-collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" *ngIf="loggedIn;">
+    <ul class="navbar-nav mr-auto" *ngIf="this.app.isLoggedIn();">
       <li class="nav-item">
         <a class="nav-link f-thin" href="#" routerLink="/">Feed</a>
       </li>
@@ -17,7 +17,7 @@
     <a class="navbar-brand" href="#">KAOHON</a>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto" *ngIf="loggedIn; else register">
+    <ul class="navbar-nav ml-auto" *ngIf="this.app.isLoggedIn(); else register">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle f-thin" href="#" id="drop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           All You
@@ -40,7 +40,7 @@
           <a class="nav-link f-thin" href="#" routerLink="/register">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link f-thin" href="#" routerLink="/login" (click)="logIn()">Log In</a>
+          <a class="nav-link f-thin" href="#" routerLink="/login">Log In</a>
         </li>
       </ul>
     </ng-template>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from "../shared/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -6,19 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../app.component.css']
 })
 export class NavigationComponent implements OnInit {
-  loggedIn = true
+  loggedIn = true;
 
-  constructor() { }
+  app: ApiService;
+  router: Router;
+
+  constructor(app: ApiService, router: Router) {
+    this.app = app;
+    this.router = router;
+  }
 
   ngOnInit(): void {
   }
 
   logOut() {
-    this.loggedIn = false
+    this.app.logout();
   }
-
-  logIn() {
-    this.loggedIn = true
-  }
-
 }

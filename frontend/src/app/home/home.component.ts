@@ -3,6 +3,8 @@ import { posts, users } from '../users';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { EventEmitter } from 'events';
 import { fadeIn } from '../animations';
+import {ApiService} from "../shared/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,8 @@ import { fadeIn } from '../animations';
 export class HomeComponent implements OnInit {
   allPosts = posts;
   allUsers = users;
+  app: ApiService;
+  router: Router;
   activeId = -1;
 
   // Temp: Current User (Julian)
@@ -42,7 +46,9 @@ export class HomeComponent implements OnInit {
     return this.allUsers.find(x => x.id == id);
   }
 
-  constructor() {
+  constructor(app: ApiService, router: Router) {
+    this.app = app;
+    this.router = router;
     this.activeId = -1;
     this.currentUser = users[0];
   }

@@ -17,12 +17,12 @@ export class AppComponent {
     this.app.authenticate(undefined, undefined);
   }
 
-  logout() {
-    this.http.post('logout', {}).pipe(finalize(() => {
-      this.app.authenticated = false;
-      this.router.navigateByUrl('/login');
-    })).subscribe();
-  }
+  // logout() {
+  //   this.http.post('logout', {}).pipe(finalize(() => {
+  //     this.app.authenticated = false;
+  //     this.router.navigateByUrl('/login');
+  //   })).subscribe();
+  // }
 
   authenticated(): boolean {
     return this.app.authenticated;

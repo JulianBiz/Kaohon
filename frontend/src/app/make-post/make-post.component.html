@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <h3 class="text-center f-light">How are you feeling today?</h3>
+  <div class="container text-center w-75" *ngIf="error">
+    <div class="alert alert-danger">Hey, your post is blank!</div>
+  </div>
+  <form class="d-block ml-auto mr-auto w-75">
+    <div class="form-group">
+      <textarea class="form-control" id="postContent" name="postContent" rows="3"></textarea>
+    </div>
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-danger userBox">Post!</button>
+    </div>
+  </form>
+</div>

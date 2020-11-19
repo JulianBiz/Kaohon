@@ -25,6 +25,7 @@ import { SinglePostComponent } from './single-post/single-post.component';
 import { RegisterComponent } from './register/register.component';
 import {Observable} from 'rxjs';
 import {ApiService} from './shared/api.service';
+import { MakePostComponent } from './make-post/make-post.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -81,7 +82,8 @@ const appRoutes: Routes = [
     ReportComponent,
     ViewPostComponent,
     SinglePostComponent,
-    RegisterComponent
+    RegisterComponent,
+    MakePostComponent
   ],
   imports: [
     BrowserModule,

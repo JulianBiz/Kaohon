@@ -29,6 +29,7 @@ export class ApiService {
 
   logout(): void {
     sessionStorage.removeItem('username');
+    this.authenticated = false;
   }
 
   isLoggedIn(): boolean {
@@ -39,6 +40,7 @@ export class ApiService {
     // ToDo: Check with Backend
     if (username === 'albert@onetwothree.com' && password === '321321') {
       sessionStorage.setItem('username', username);
+      this.authenticated = true;
       return true;
     }
     return false;
