@@ -27,15 +27,32 @@ export class ApiService {
     return this.http.post<User>(this.CREATE_USER, user);
   }
 
+  logout(): void {
+    sessionStorage.removeItem('username');
+  }
+
+  isLoggedIn(): boolean {
+    return !(sessionStorage.getItem('username') === null);
+  }
+
+  login(username, password): boolean {
+    // ToDo: Check with Backend
+    if (username === 'albert@onetwothree.com' && password === '321321') {
+      sessionStorage.setItem('username', username);
+      return true;
+    }
+    return false;
+  }
+
   authenticate(credentials, callback) {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
-    headers.append('Access-Control-Allow-Credentials', 'true');
+    // headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+    // headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
+    // headers.append('Access-Control-Allow-Credentials', 'true');
 
-    this.http.get('http://localhost:8080/demo/user', {headers}).subscribe(
+    this.http.get('http://localhost:8080/demo/isUser', {headers}).subscribe(
       res => {
         this.authenticate = res['name'];
         return callback && callback();

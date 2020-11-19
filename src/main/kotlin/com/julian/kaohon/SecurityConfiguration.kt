@@ -29,10 +29,9 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
                     .cors()
                     .and().formLogin().usernameParameter("julian").passwordParameter("kuribo").and()
                     .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/home", "/login", "/demo/user", HttpMethod.OPTIONS.toString())
-                    .permitAll()
+                    .antMatchers("/index.html", "/", "/home", "/login", "/demo/user", HttpMethod.OPTIONS.toString()).fullyAuthenticated()
                     .anyRequest()
-                    .authenticated()
+                    .authenticated().and().httpBasic()
 
 //                csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                        .and().formLogin().loginPage("/")

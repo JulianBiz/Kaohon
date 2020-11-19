@@ -23,3 +23,12 @@ Content-Type: application/json
 ###
 
 GET {{host-url}}//user
+
+###
+POST {{host-url}}//isUser
+Content-Type: application/json
+
+{
+  "username": "albert@onetwothree.com",
+  "password": "321321"
+}

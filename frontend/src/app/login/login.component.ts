@@ -17,15 +17,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): boolean {
+  login(): void {
     // alert(this.credentials.username + " : " + this.credentials.password);
-    this.app.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/');
+    // this.app.authenticate(this.credentials, () => {
+    //   this.router.navigateByUrl('/');
+    //   alert('Successfully Logged In!');
+    //   this.error = false;
+    // });
+
+    if (this.app.login(this.credentials.username, this.credentials.password)) {
       this.error = false;
-      return;
-    });
-    this.error = true;
-    return false;
+      this.router.navigateByUrl('/');
+    } else {
+      this.error = true;
+    }
   }
 
 }

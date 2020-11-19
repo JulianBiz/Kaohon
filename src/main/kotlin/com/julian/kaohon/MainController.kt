@@ -47,6 +47,15 @@ class MainController {
         return user;
     }
 
+    @CrossOrigin(origins = ["http://localhost:8080", "http://localhost:4200"], allowedHeaders = ["*"])
+    @PostMapping("/isUser")
+    @ResponseBody fun checkUser(@RequestParam email : String, @RequestParam pw : String) : Boolean {
+        println("Email: ${email} | PW: ${pw}");
+        val user : User? = userRepository.findAll().find {
+            user -> user.getEmail() == email && user.getPassword() == pw
+        }
+        return user != null;
+    }
 
     @PostMapping("/add")
     @ResponseBody fun addNewUser(
