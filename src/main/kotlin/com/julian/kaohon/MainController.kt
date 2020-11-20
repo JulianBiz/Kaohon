@@ -80,6 +80,13 @@ class MainController {
         return "Saved!\nUser: " + name + " | Email: " + email + "\n"
     }
 
+    @GetMapping("/checkUser")
+    @ResponseBody fun getUser(@RequestParam("email") email : String, @RequestParam("pw") pw : String) : User? {
+        return userRepository.findAll().find {
+            x -> x.getEmail() == email && x.getPassword() == pw;
+        }
+    }
+
     @GetMapping("/all")
     @ResponseBody fun getAllUsers() : Iterable<User> {
         return userRepository.findAll()

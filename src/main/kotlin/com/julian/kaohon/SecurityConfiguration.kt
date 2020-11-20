@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -21,6 +22,11 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
     }
 
     @Override
+    public override fun configure(web: WebSecurity?) {
+        web!!.ignoring()!!.antMatchers(HttpMethod.OPTIONS, "/**")
+    }
+
+    @Override
     protected override fun configure(http: HttpSecurity) {
         try {
             http
@@ -29,7 +35,7 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
                     .cors()
                     .and().formLogin().usernameParameter("julian").passwordParameter("kuribo").and()
                     .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/home", "/login", "/demo/user", HttpMethod.OPTIONS.toString()).fullyAuthenticated()
+                    .antMatchers("/**", HttpMethod.OPTIONS.toString()).permitAll().antMatchers("/**", HttpMethod.GET.toString()).permitAll()
                     .anyRequest()
                     .authenticated().and().httpBasic()
 
