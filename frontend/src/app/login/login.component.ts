@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['../app.component.css']
 })
 export class LoginComponent implements OnInit {
-  error = false;
+  error!: boolean;
+  success!: boolean;
   credentials = {username: '', password: ''};
 
   constructor(private app: ApiService, private http: HttpClient, private router: Router) { }
@@ -18,17 +19,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    // alert(this.credentials.username + " : " + this.credentials.password);
-    // this.app.authenticate(this.credentials, () => {
-    //   this.router.navigateByUrl('/');
-    //   alert('Successfully Logged In!');
-    //   this.error = false;
-    // });
+    this.app.login(this.credentials.username, this.credentials.password);
+    setTimeout(() => this.showMessage(), 1000);
+  }
 
-    if (this.app.login(this.credentials.username, this.credentials.password)) {
+  showMessage(): void {
+    if (this.app.isLoggedIn()) {
+      this.success = true;
       this.error = false;
+      // setTimeout
       this.router.navigateByUrl('/');
     } else {
+      this.success = true;
       this.error = true;
     }
   }

@@ -35,7 +35,8 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
                     .cors()
                     .and().formLogin().usernameParameter("julian").passwordParameter("kuribo").and()
                     .authorizeRequests()
-                    .antMatchers("/**", HttpMethod.OPTIONS.toString()).permitAll().antMatchers("/**", HttpMethod.GET.toString()).permitAll()
+//                    .antMatchers("/**", HttpMethod.OPTIONS.toString()).permitAll()
+                    .antMatchers("/**", HttpMethod.GET.toString()).permitAll()
                     .anyRequest()
                     .authenticated().and().httpBasic()
 

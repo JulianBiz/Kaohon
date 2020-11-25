@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'frontend';
 
   constructor(private app: ApiService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(undefined, undefined);
+    // this.app.authenticated(undefined, undefined);
   }
 
   // logout() {

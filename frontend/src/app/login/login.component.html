@@ -1,7 +1,10 @@
 <h3 class="text-center spacer-l f-thin">Login</h3>
 <div class="container f-thin">
-  <div class="alert alert-danger" [hidden]="!error">
+  <div class="alert alert-danger" [hidden]="!this.error">
     There was a problem logging in. Please try again!
+  </div>
+  <div class="alert alert-success" [hidden]="!this.success">
+    You've logged in!
   </div>
   <form class="w-50 d-block ml-auto mr-auto" (submit)="login()">
     <div class="form-group">

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../user-list/model/user';
 import {getToken} from "codelyzer/angular/styles/cssLexer";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,12 @@ export class ApiService {
   private ALL_USERS = `${this.BASE_URL}\\all`;
   private CREATE_USER = `${this.BASE_URL}\\newAdd`;
   http: HttpClient = null;
-
+  router: Router = null;
   authenticated = false;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, router: Router) {
     this.http = http;
+    this.router = router;
   }
 
   getAllUsers(): Observable<User[]> {
@@ -34,11 +36,13 @@ export class ApiService {
   }
 
   isLoggedIn(): boolean {
-    return !(sessionStorage.getItem('username') === null);
+    // return !(sessionStorage.get('username') === null);
+    return this.authenticated;
   }
 
   login(usr, pw): boolean {
     // ToDo: Check with Backend
+    sessionStorage.removeItem('username');
     const credentials = {username: usr, password: pw};
     // alert(credentials.username + ' ' + credentials.password);
     const headers = new HttpHeaders(credentials ? {
@@ -58,9 +62,8 @@ export class ApiService {
       .set('email', usr)
       .set('pw', pw);
 
-    this.http.get('http://localhost:8080/demo/checkUser', { params: p, headers }).subscribe(
+    this.http.get('http://localhost:8080/demo/checkUser', { params: p }).subscribe(
       res => {
-        console.log(res == null);
         if (res != null) {
           sessionStorage.setItem('username', usr);
           this.authenticated = true;
@@ -73,30 +76,23 @@ export class ApiService {
     );
 
     return this.isLoggedIn();
-
-    // if (usr === 'albert@onetwothree.com' && pw === '321321') {
-    //   sessionStorage.setItem('username', usr);
-    //   this.authenticated = true;
-    //   return true;
-    // }
-    // return false;
   }
 
-  authenticate(credentials, callback) {
-    const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
-    // headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-    // headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
-    // headers.append('Access-Control-Allow-Credentials', 'true');
-
-    // this.http.get('http://localhost:8080/demo/isUser', {headers}).subscribe(
-    //   res => {
-    //     this.authenticate = res['name'];
-    //     return callback && callback();
-    //   }
-    // );
-  }
+  // authenticate(credentials, callback) {
+  //   const headers = new HttpHeaders(credentials ? {
+  //     authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+  //   } : {});
+  //   // headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+  //   // headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
+  //   // headers.append('Access-Control-Allow-Credentials', 'true');
+  //
+  //   // this.http.get('http://localhost:8080/demo/isUser', {headers}).subscribe(
+  //   //   res => {
+  //   //     this.authenticate = res['name'];
+  //   //     return callback && callback();
+  //   //   }
+  //   // );
+  // }
 
   // Feedback
 }
