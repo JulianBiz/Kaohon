@@ -35,6 +35,7 @@ class MainController {
         var temp = User()
         temp.setFirst(user.getFirst())
         temp.setLast(user.getLast())
+        temp.setName(user.getFirst() + " " + user.getLast());
         temp.setPassword(user.getPassword())
         temp.setEmail(user.getEmail())
         userRepository.save(temp)

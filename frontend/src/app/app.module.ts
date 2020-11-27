@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 import {Observable} from 'rxjs';
 import {ApiService} from './shared/api.service';
 import { MakePostComponent } from './make-post/make-post.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -38,38 +39,15 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 const appRoutes: Routes = [
-  {
-    path: 'nav',
-    component: NavigationComponent
-  },
-  {
-    path: 'users',
-    component: UserListComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'report',
-    component: ReportComponent
-  },
-  {
-    path: 'view',
-    component: ViewPostComponent
-  },
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: '**',
-    component: HomeComponent
-  }
+  { path: 'nav',  component: NavigationComponent },
+  { path: 'users', component: UserListComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'report',  component: ReportComponent },
+  { path: 'view',  component: ViewPostComponent },
+  { path: 'profile', component: ViewProfileComponent },
+  { path: '', component: HomeComponent },
+  { path: '**',  component: HomeComponent }
 ];
 
 @NgModule({
@@ -83,7 +61,8 @@ const appRoutes: Routes = [
     ViewPostComponent,
     SinglePostComponent,
     RegisterComponent,
-    MakePostComponent
+    MakePostComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,

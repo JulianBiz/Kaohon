@@ -5,13 +5,13 @@
 </script>
 
 <div class="container-fluid" *ngIf="this.app.isLoggedIn() else blankHome">
-  <h1 class="text-center spacer-l f-thin">Welcome back, {{ currentUser.name }}</h1>
+  <h1 class="text-center spacer-l f-thin">Welcome back, {{ this.app.getUser().name }}</h1>
   <div class="row">
     <!-- ToDo: Remove sidebar if mobile-->
     <!-- ToDo: Create as ShortProfile Component, prepare FullProfileComponent as well? -->
     <div class="col-2">
       <img src="{{currentUser.profPicLink}}" class="rounded-circle w-100 text-left spacer-l">
-      <h3 class="text-center f-thin">{{ currentUser.name }}</h3>
+      <h3 class="text-center f-thin">{{ this.app.getUser().name }}</h3>
       <p class="text-center">{{ currentUser.division }}</p>
       <p class="text-center">Friends: {{ currentUser.friends.length }}</p>
       <div class="text-center">
@@ -43,6 +43,7 @@
   <div class="container-fluid spacer-l text-center">
     <h3 class="f-light">Welcome to Kaohon</h3>
     <p class="f-thin">We're still working hard on the website. If you have an account, feel free to log in by clicking the button below.</p>
-    <button class="btn btn-danger" (click)="this.router.navigateByUrl('/login')">Log In</button>
+    <button class="btn btn-danger m-2 userBox" (click)="this.router.navigateByUrl('/login')">Log In</button>
+    <button class="btn btn-dark m-2 userBox" (click)="this.router.navigateByUrl('/register')">Register</button>
   </div>
 </ng-template>

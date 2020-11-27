@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.app.login(this.credentials.username, this.credentials.password);
-    setTimeout(() => this.showMessage(), 1000);
+    setTimeout(() => this.showMessage(), 50);
   }
 
   showMessage(): void {
@@ -28,9 +28,10 @@ export class LoginComponent implements OnInit {
       this.success = true;
       this.error = false;
       // setTimeout
-      this.router.navigateByUrl('/');
+      setTimeout(() => this.router.navigateByUrl('/'), 500);
+      // this.router.navigateByUrl('/');
     } else {
-      this.success = true;
+      this.success = false;
       this.error = true;
     }
   }

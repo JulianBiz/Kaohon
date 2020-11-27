@@ -56,6 +56,10 @@
   transition: 1s ease;
 }
 
+label {
+  margin-right: 10px;
+}
+
 /* NAVIGATION RELATED */
 .dropdown-item {
   transition: 1s ease;

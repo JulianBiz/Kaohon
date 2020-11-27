@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user-list/model/user';
 import {ApiService} from '../shared/api.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import {ApiService} from '../shared/api.service';
   styleUrls: ['../app.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  router: Router;
   apiService: ApiService;
   model: User = {
     id: null,
@@ -25,8 +26,9 @@ export class RegisterComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(apiService: ApiService) {
+  constructor(apiService: ApiService, router: Router) {
     this.apiService = apiService;
+    this.router = router;
   }
 
   ngOnInit(): void {
@@ -49,8 +51,11 @@ export class RegisterComponent implements OnInit {
       res => {
         newUser.id = res.id;
         this.users.push(newUser);
-      }, err => {
-        alert('Error occurred with User Creation! API Service-> createUser()');
+        this.apiService.login(newUser.email, newUser.password);
+        this.router.navigateByUrl('/');
+      }, error => {
+        this.apiService.login(newUser.email, newUser.password);
+        this.router.navigateByUrl('/');
       }
     );
   }

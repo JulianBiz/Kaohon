@@ -15,10 +15,14 @@ export class ApiService {
   http: HttpClient = null;
   router: Router = null;
   authenticated = false;
+  user: User;
 
   constructor(http: HttpClient, router: Router) {
     this.http = http;
     this.router = router;
+
+    // TEMP
+    this.login('testuser2@gmail.com', 'testtest');
   }
 
   getAllUsers(): Observable<User[]> {
@@ -26,13 +30,20 @@ export class ApiService {
   }
 
   createUser(user: User): Observable<User> {
-    alert('User: ' + user.first + ' ' + user.last);
+    // alert('User: ' + user.first + ' ' + user.last);
     return this.http.post<User>(this.CREATE_USER, user);
   }
 
   logout(): void {
     sessionStorage.removeItem('username');
     this.authenticated = false;
+  }
+
+  getUser(): User {
+    if (this.isLoggedIn()) {
+      return this.user;
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
@@ -44,21 +55,12 @@ export class ApiService {
     // ToDo: Check with Backend
     sessionStorage.removeItem('username');
     const credentials = {username: usr, password: pw};
-    // alert(credentials.username + ' ' + credentials.password);
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
-    // httpBearerHeader = {
-    //   headers: new HttpHeaders( {
-    //     'Content-Type': 'application/json',
-    //     Authorization: 'Bearer ' + t
-    //   })
-    // }
-
     headers.append('Access-Control-Allow-Headers', '**');
-    // headers.append('Access-Control-Request-Method', 'GET');
 
-    let p = new HttpParams()
+    const p = new HttpParams()
       .set('email', usr)
       .set('pw', pw);
 
@@ -66,6 +68,7 @@ export class ApiService {
       res => {
         if (res != null) {
           sessionStorage.setItem('username', usr);
+          this.user = res as User;
           this.authenticated = true;
         } else {
           this.authenticated = false;

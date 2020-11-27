@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { users } from '../users';
-import {fadeIn} from "../animations";
-import {HttpClient} from "@angular/common/http";
-import {User} from "./model/user";
-import {ApiService} from "../shared/api.service";
+import {fadeIn} from '../animations';
+import {HttpClient} from '@angular/common/http';
+import {User} from './model/user';
+import {ApiService} from '../shared/api.service';
 
 @Component({
   selector: 'app-user-list',
@@ -14,29 +14,29 @@ import {ApiService} from "../shared/api.service";
   ]
 })
 export class UserListComponent implements OnInit {
-  userList = users
+  userList = users;
   title = 'View Members';
-  apiService : ApiService = null
+  apiService: ApiService = null;
   userGroup: User[] = [];
 
   constructor(apiService: ApiService) {
-    this.apiService = apiService
+    this.apiService = apiService;
   }
 
   ngOnInit(): void {
-    this.getAllUsers()
+    this.getAllUsers();
   }
 
   getAllUsers() {
-    let url = "http://localhost:8080/demo/all"
+    const url = 'http://localhost:8080/demo/all';
     this.apiService.getAllUsers().subscribe(
       res => {
-        this.userGroup = res
+        this.userGroup = res;
       },
       err => {
-        alert("An error has occurred");
+        alert('An error has occurred');
       }
-    )
+    );
   }
 
 }
